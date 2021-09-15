@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Taboola Widget Replica CDN</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<script>
+	// Get HTML head element
+	var head = document.getElementsByTagName('HEAD')[0]; 
+	// Create new link Element
+	var link = document.createElement('link');
+	// set the attributes for link element 
+	link.rel = 'stylesheet'; 
+	link.type = 'text/css';
+	link.href = 'http://localhost/job_task/cdn/css/style.css'; 
+	// Append link element to HTML head
+	head.appendChild(link); 
+
+	var newDiv = document.createElement("div");
+	newDiv.id = 'JsonDataResponseMain';
+	document.body.appendChild(newDiv);
+	function loadJSON(callback) {
+	    var xobj = new XMLHttpRequest();
+	    xobj.overrideMimeType("application/json");
+	    xobj.open('GET', 'http://localhost/job_task/cdn/data/jsondata.json', true);
+	    xobj.onreadystatechange = function() {
+	        if (xobj.readyState == 4 && xobj.status == "200") {
+	            callback(xobj.responseText);
+	        }
+	    }
+	    xobj.send(null);
+	}
+
+	loadJSON(function(response) {
+	    // Do Something with the response e.g.
+	    //jsonresponse = JSON.parse(response);
+	    jsonresponse = JSON.parse(response);
+	    //console.log(jsonresponse);
+	    var feedhtml = "";
+		for(i = 0; i < jsonresponse.length; i++){
+			//console.log(jsonresponse[i]['article_author']);
+			var article_author = jsonresponse[i]['article_author'];
+			var article_blurb = jsonresponse[i]['article_blurb'];
+			var article_image = jsonresponse[i]['article_image'];
+			var article_section = jsonresponse[i]['article_section'];
+			var article_title = jsonresponse[i]['article_title'];
+			var article_url = jsonresponse[i]['article_url'];
+			feedhtml +='<div class="SingleFeedMain">';
+			feedhtml += '<a href="'+article_url+'" target="_blank">'
+			feedhtml += '<div class="FeedImageMain">';
+			feedhtml += '<img src="'+article_image+'">';
+			feedhtml += '</div>';
+			feedhtml += '<div class="FeedContentMain">';
+			feedhtml += '<span class="FeedTitle">'+article_title+'</span>';
+			feedhtml += '<span class="FeedSubTitle">'+article_section+' | '+article_author+'</span>';
+			feedhtml += '</div>';
+			feedhtml += '</a>';
+			feedhtml += '</div>';
+		} 
+		document.getElementById("JsonDataResponseMain").innerHTML = feedhtml; 
+	});
+</script>
+</body>
+</html>

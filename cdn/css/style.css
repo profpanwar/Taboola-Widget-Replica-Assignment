@@ -1,0 +1,67 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+#JsonDataResponseMain{
+	display: block;
+    padding: 0px 15px;
+}
+.SingleFeedMain{
+	width: 30%;
+    float: left;
+    display: inline-block;
+    margin: 0.6%;
+}
+.SingleFeedMain .FeedLink{
+	display: inline-block;
+	width: 100%;
+}
+.SingleFeedMain .FeedImageMain{
+	display: inline-block;
+    width: 100%;
+    min-height: 275px;
+    max-height: 275px;
+}
+.SingleFeedMain .FeedImageMain img{
+	width: 100%;
+    max-height: 275px;
+    min-height: 275px;
+    object-fit: cover;
+}
+.SingleFeedMain .FeedContentMain{
+	display: inline-block;
+	width: 100%;
+}
+.SingleFeedMain .FeedContentMain .FeedTitle{
+	display: inline-block;
+    width: 100%;
+    color: #090c15;
+    font-size: 20px;
+    line-height: 28px;
+    margin: 10px 0px;
+    font-weight: bold;
+    min-height: 60px;
+}
+.SingleFeedMain .FeedContentMain .FeedSubTitle{
+	display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+    color: #000000a1;
+    font-size: 16px;
+    font-weight: 600;
+}
+@media screen and (max-width: 767px){
+	.SingleFeedMain {
+	    width: 100%;
+	    float: initial;
+	    display: inline-block;
+	    margin: 0.6% 0.6% 20px 0.6%;
+	}
+	.SingleFeedMain .FeedImageMain {
+	    min-height: 250px;
+	    max-height: 250px;
+	}
+	.SingleFeedMain .FeedContentMain .FeedTitle {
+	    min-height: inherit;
+	}
+}
